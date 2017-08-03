@@ -32,3 +32,11 @@ tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count']
 
 # Sort the tuple entries in descending order
 most_popular_tups = sorted(tweet_tups, key = itemgetter(1), reverse=True)[:5]
+
+# prettify
+table = PrettyTable(field_names=['Text', 'Retweet Count'])
+for key, val in most_popular_tups:
+    table.add_row([key, val])
+table.max_width['Text'] = 50
+table.align['Text'], table.align['Retweet Count'] = 'l', 'r' # align the columns
+print table
